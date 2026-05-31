@@ -6,7 +6,6 @@ using namespace std;
 
 struct  Edge
 {   
-    string source;
     string destination;
     int cost;
     int duration;
@@ -21,5 +20,7 @@ public:
     string addRoute(string from , string to , int cost, int duration, string airline );
     string displayAllCities();
     string displayAllRoutes();
+    void saveToFile(string filename);
+    void loadFromFile(string filename);
 };
     

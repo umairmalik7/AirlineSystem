@@ -1,0 +1,32 @@
+CITY Karachi
+CITY Lahore
+CITY Islamabad
+CITY Dubai
+CITY London
+CITY NewYork
+CITY Toronto
+CITY Paris
+CITY Istanbul
+CITY Bangkok
+ROUTE Karachi Lahore 500 90 PIA
+ROUTE Karachi Dubai 800 120 Emirates
+ROUTE Karachi Islamabad 600 75 AirBlue
+ROUTE Lahore Islamabad 300 60 PIA
+ROUTE Lahore Dubai 900 180 Emirates
+ROUTE Lahore Istanbul 1100 240 TurkishAirlines
+ROUTE Islamabad London 1500 420 PIA
+ROUTE Islamabad Dubai 700 150 AirBlue
+ROUTE Dubai London 1200 420 Emirates
+ROUTE Dubai NewYork 1800 840 Emirates
+ROUTE Dubai Bangkok 950 360 FlyDubai
+ROUTE Dubai Paris 1100 390 Emirates
+ROUTE London NewYork 900 480 BritishAirways
+ROUTE London Paris 300 75 BritishAirways
+ROUTE London Toronto 850 420 AirCanada
+ROUTE NewYork Toronto 400 90 AirCanada
+ROUTE NewYork Paris 750 450 DeltaAirlines
+ROUTE Toronto Paris 700 420 AirCanada
+ROUTE Paris Istanbul 600 210 AirFrance
+ROUTE Istanbul Bangkok 900 330 TurkishAirlines
+ROUTE Istanbul Dubai 500 180 TurkishAirlines
+ROUTE Bangkok Dubai 850 360 ThaiAirways
