@@ -12,6 +12,8 @@
 #include<climits>
 #include<queue>   
 #include<algorithm>   
+#include<iomanip>
+#include<ctime>
 
 using namespace std;
 
@@ -59,6 +61,7 @@ public:
  
     // Module 4 — DFS
     void findAllPaths(string source, string destination);
+    void performanceComparison(string source, string destination);
 };
 
 #endif

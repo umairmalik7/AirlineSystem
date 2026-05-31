@@ -488,3 +488,108 @@ void Graph::findAllPaths(string source, string destination) {
         cout << "\nTotal paths found: " << pathCount << endl;
     }
 }
+ 
+
+
+void Graph::performanceComparison(string source, string destination) {
+    if (adjList.find(source) == adjList.end()) {
+        cout << "Source city does not exist." << endl;
+        return;
+    }
+    if (adjList.find(destination) == adjList.end()) {
+        cout << "Destination city does not exist." << endl;
+        return;
+    }
+
+ 
+    cout << "\n========================================================" << endl;
+    cout << "         ALGORITHM PERFORMANCE COMPARISON               " << endl;
+    cout << "========================================================" << endl;
+    cout << "  Source      : " << source << endl;
+    cout << "  Destination : " << destination << endl;
+    cout << "========================================================" << endl;
+ 
+
+ 
+    // --- Dijkstra Cheapest ---
+    clock_t start = clock();
+    RouteResult cheap = dijkstraCheapest(source, destination);
+    clock_t end = clock();
+ 
+ 
+    // --- Dijkstra Fastest ---
+    start = clock();
+    RouteResult fast = dijkstraFastest(source, destination);
+    end = clock();
+  
+ 
+    // --- BFS Fewest Stops ---
+    start = clock();
+    RouteResult bfs = bfsFewestStops(source, destination);
+    end = clock();
+ 
+ 
+  
+    auto pathToString = [](RouteResult& r) -> string {
+        if (!r.found) return "No path found";
+        string s = "";
+        for (int i = 0; i < r.path.size(); i++) {
+            s += r.path[i];
+            if (i < r.path.size() - 1) s += " -> ";
+        }
+        return s;
+    };
+ 
+    auto formatDuration = [](int mins) -> string {
+        int h = mins / 60;
+        int m = mins % 60;
+        return to_string(h) + "h " + to_string(m) + "m";
+    };
+ 
+    // print results
+    cout << "\n[1] Dijkstra - Cheapest Route" << endl;
+    cout << "    Path     : " << pathToString(cheap) << endl;
+    if (cheap.found) {
+        cout << "    Cost     : $" << cheap.totalCost << endl;
+        cout << "    Duration : " << formatDuration(cheap.totalDuration) << endl;
+        cout << "    Stops    : " << cheap.path.size() - 2 << endl;
+    }
+  
+ 
+    cout << "\n[2] Dijkstra - Fastest Route" << endl;
+    cout << "    Path     : " << pathToString(fast) << endl;
+    if (fast.found) {
+        cout << "    Cost     : $" << fast.totalCost << endl;
+        cout << "    Duration : " << formatDuration(fast.totalDuration) << endl;
+        cout << "    Stops    : " << fast.path.size() - 2 << endl;
+    }
+   
+ 
+    cout << "\n[3] BFS - Fewest Stops Route" << endl;
+    cout << "    Path     : " << pathToString(bfs) << endl;
+    if (bfs.found) {
+        cout << "    Cost     : $" << bfs.totalCost << endl;
+        cout << "    Duration : " << formatDuration(bfs.totalDuration) << endl;
+        cout << "    Stops    : " << bfs.path.size() - 2 << endl;
+    }
+
+ 
+    // summary — which is best for what
+    cout << "\n========================================================" << endl;
+    cout << "  SUMMARY" << endl;
+    cout << "========================================================" << endl;
+    if (cheap.found)
+        cout << "  Best for Budget    : Dijkstra Cheapest  ($" << cheap.totalCost << ")" << endl;
+    if (fast.found)
+        cout << "  Best for Speed     : Dijkstra Fastest   (" << formatDuration(fast.totalDuration) << ")" << endl;
+    if (bfs.found)
+        cout << "  Fewest Connections : BFS                (" << bfs.path.size() - 2 << " stop(s))" << endl;
+    cout << "========================================================" << endl;
+ 
+    // complexity reminder
+    cout << "\n  Time Complexities:" << endl;
+    cout << "  Dijkstra : O((V + E) log V)" << endl;
+    cout << "  BFS      : O(V + E)" << endl;
+    cout << "  V = cities, E = routes" << endl;
+    cout << "========================================================\n" << endl;
+}

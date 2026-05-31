@@ -1,27 +1,28 @@
-
 #include <iostream>
 #include <string>
 #include "graph.h"
- 
+
 using namespace std;
- 
+
 void menu() {
-    cout << "\n===== Airline Route System =====" << endl;
-    cout << " 1.  Add a City"                    << endl;
-    cout << " 2.  Add a Flight Route"             << endl;
-    cout << " 3.  Display All Cities"             << endl;
-    cout << " 4.  Display All Routes"             << endl;
-    cout << " 5.  Find CHEAPEST Route"            << endl;
-    cout << " 6.  Find FASTEST Route"             << endl;
-    cout << " 7.  Find FEWEST STOPS Route"        << endl;
-    cout << " 8.  Show ALL Possible Paths"        << endl;
-    cout << " 9.  Save Routes to File"            << endl;
-    cout << " 10. Load Routes from File"          << endl;
-    cout << " 0.  Exit"                           << endl;
-    cout << "================================="   << endl;
+    cout << "\n=========================================" << endl;
+    cout << "   AIRLINE ROUTE OPTIMIZATION SYSTEM    " << endl;
+    cout << "=========================================" << endl;
+    cout << " 1.  Add a City"                          << endl;
+    cout << " 2.  Add a Flight Route"                  << endl;
+    cout << " 3.  Display All Cities"                  << endl;
+    cout << " 4.  Display All Routes"                  << endl;
+    cout << " 5.  Find CHEAPEST Route"                 << endl;
+    cout << " 6.  Find FASTEST Route"                  << endl;
+    cout << " 7.  Find FEWEST STOPS Route"             << endl;
+    cout << " 8.  Show ALL Possible Paths"             << endl;
+    cout << " 9.  Save Routes to File"                 << endl;
+    cout << " 10. Load Routes from File"               << endl;
+    cout << " 11. Algorithm Performance Comparison"    << endl;
+    cout << " 0.  Exit"                                << endl;
+    cout << "=========================================" << endl;
     cout << "Enter your choice: ";
 }
-
 
 void printRoute(RouteResult& r, string label) {
     if (!r.found) {
@@ -29,36 +30,35 @@ void printRoute(RouteResult& r, string label) {
         return;
     }
     cout << "\n===== " << label << " =====" << endl;
-
-    cout << "Path     : ";
+    cout << "Path          : ";
     for (int i = 0; i < r.path.size(); i++) {
         cout << r.path[i];
         if (i < r.path.size() - 1) cout << " -> ";
     }
     cout << endl;
- 
     cout << "Total Cost    : $" << r.totalCost << endl;
-
     int hours = r.totalDuration / 60;
     int mins  = r.totalDuration % 60;
     cout << "Total Duration: " << hours << "h " << mins << "m" << endl;
-    cout << "Stops         : " << r.path.size() - 2 << " stop(s)" << endl;
+    cout << "Stops         : " << (int)r.path.size() - 2 << " stop(s)" << endl;
 }
- 
+
 int main() {
     Graph myGraph;
     bool running = true;
- 
-    cout << "===== Welcome to Airline Route Optimization System =====" << endl;
- 
+
+    cout << "=========================================" << endl;
+    cout << "  Welcome to Airline Route Optimizer     " << endl;
+    cout << "=========================================" << endl;
+
     while (running) {
         menu();
         int choice;
         cin >> choice;
-        cin.ignore(); 
- 
+        cin.ignore();
+
         switch (choice) {
- 
+
             case 1: {
                 string cityName;
                 cout << "Enter city name: ";
@@ -66,7 +66,7 @@ int main() {
                 cout << myGraph.addCity(cityName) << endl;
                 break;
             }
- 
+
             case 2: {
                 string from, to, airline;
                 int cost, duration;
@@ -84,18 +84,19 @@ int main() {
                 cout << myGraph.addRoute(from, to, cost, duration, airline) << endl;
                 break;
             }
- 
+
             case 3: {
                 cout << myGraph.displayAllCities() << endl;
                 break;
             }
- 
+
             case 4: {
                 cout << myGraph.displayAllRoutes() << endl;
                 break;
             }
-            case 5:{
-                string from , to;
+
+            case 5: {
+                string from, to;
                 cout << "Enter source city: ";
                 getline(cin, from);
                 cout << "Enter destination city: ";
@@ -104,8 +105,9 @@ int main() {
                 printRoute(r, "Cheapest Route");
                 break;
             }
-            case 6:{
-                string from , to;
+
+            case 6: {
+                string from, to;
                 cout << "Enter source city: ";
                 getline(cin, from);
                 cout << "Enter destination city: ";
@@ -114,7 +116,8 @@ int main() {
                 printRoute(r, "Fastest Route");
                 break;
             }
-             case 7: {
+
+            case 7: {
                 string from, to;
                 cout << "Enter source city: ";
                 getline(cin, from);
@@ -124,6 +127,7 @@ int main() {
                 printRoute(r, "Fewest Stops Route");
                 break;
             }
+
             case 8: {
                 string from, to;
                 cout << "Enter source city: ";
@@ -133,6 +137,7 @@ int main() {
                 myGraph.findAllPaths(from, to);
                 break;
             }
+
             case 9: {
                 string filename;
                 cout << "Enter filename to save (e.g. routes.txt): ";
@@ -140,6 +145,7 @@ int main() {
                 myGraph.saveToFile(filename);
                 break;
             }
+
             case 10: {
                 string filename;
                 cout << "Enter filename to load (e.g. routes.txt): ";
@@ -147,17 +153,27 @@ int main() {
                 myGraph.loadFromFile(filename);
                 break;
             }
- 
+
+            case 11: {
+                string from, to;
+                cout << "Enter source city: ";
+                getline(cin, from);
+                cout << "Enter destination city: ";
+                getline(cin, to);
+                myGraph.performanceComparison(from, to);
+                break;
+            }
+
             case 0: {
-                cout << "Goodbye!" << endl;
+                cout << "\nGoodbye! Safe travels!" << endl;
                 running = false;
                 break;
             }
- 
+
             default:
                 cout << "Invalid choice. Please try again." << endl;
         }
     }
- 
+
     return 0;
 }
