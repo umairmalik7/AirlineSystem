@@ -21,6 +21,31 @@ void menu() {
     cout << "================================="   << endl;
     cout << "Enter your choice: ";
 }
+
+// helper function to print RouteResult nicely
+void printRoute(RouteResult& r, string label) {
+    if (!r.found) {
+        cout << "No path found." << endl;
+        return;
+    }
+    cout << "\n===== " << label << " =====" << endl;
+ 
+    // print path with arrows between cities
+    cout << "Path     : ";
+    for (int i = 0; i < r.path.size(); i++) {
+        cout << r.path[i];
+        if (i < r.path.size() - 1) cout << " -> ";
+    }
+    cout << endl;
+ 
+    cout << "Total Cost    : $" << r.totalCost << endl;
+ 
+    // convert minutes to hours and minutes for display
+    int hours = r.totalDuration / 60;
+    int mins  = r.totalDuration % 60;
+    cout << "Total Duration: " << hours << "h " << mins << "m" << endl;
+    cout << "Stops         : " << r.path.size() - 2 << " stop(s)" << endl;
+}
  
 int main() {
     Graph myGraph;
@@ -69,6 +94,26 @@ int main() {
  
             case 4: {
                 cout << myGraph.displayAllRoutes() << endl;
+                break;
+            }
+            case 5:{
+                string from , to;
+                cout << "Enter source city: ";
+                getline(cin, from);
+                cout << "Enter destination city: ";
+                getline(cin, to);
+                RouteResult r = myGraph.dijkstraCheapest(from, to);
+                printRoute(r, "Cheapest Route");
+                break;
+            }
+            case 6:{
+                string from , to;
+                cout << "Enter source city: ";
+                getline(cin, from);
+                cout << "Enter destination city: ";
+                getline(cin, to);
+                RouteResult r = myGraph.dijkstraFastest(from, to);
+                printRoute(r, "Fastest Route");
                 break;
             }
             case 9: {
