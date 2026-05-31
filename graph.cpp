@@ -72,7 +72,7 @@ string Graph::displayAllRoutes() {
         }
  
         for (const auto& edge : pair.second) {
-            result += city + " to " + edge.destination +
+            result += city + " -> " + edge.destination +
                       " | Cost: $" + to_string(edge.cost) +
                       " | Duration: "  + to_string(edge.duration) + " mins" +
                       " | Airline: "   + edge.airline + "\n";
@@ -82,9 +82,7 @@ string Graph::displayAllRoutes() {
 }
 
 // saveToFile
-// IMPORTANT: saves ALL cities first, then ALL routes
-// so when loading, all destination cities exist already
-// -----------------------------------------------
+
 void Graph::saveToFile(string filename) {
     ofstream file(filename);
     if (!file.is_open()) {
@@ -115,8 +113,7 @@ void Graph::saveToFile(string filename) {
 
 
 // loadFromFile
-// Reads line by line, checks CITY or ROUTE keyword
-// -----------------------------------------------
+
 void Graph::loadFromFile(string filename) {
     ifstream file(filename);
     if (!file.is_open()) {
@@ -148,33 +145,7 @@ void Graph::loadFromFile(string filename) {
 
 
 
-// ================================================================
-// DIJKSTRA'S ALGORITHM — Find Cheapest Route
 
-// HOW IT WORKS STEP BY STEP:
-//
-// Imagine you are standing in Karachi with a notebook.
-// In the notebook you write the cheapest known cost to reach
-// every city. At the start everything is INFINITY except
-// Karachi itself which is 0.
-//
-// You then use a Priority Queue (Min Heap) — think of it as
-// a queue that always gives you the CHEAPEST city first.
-//
-// Step 1: Put source city in the queue with cost 0
-// Step 2: Take out the cheapest city from the queue
-// Step 3: Look at all its neighbours (direct flights)
-// Step 4: If going THROUGH this city is cheaper than what
-//         we knew before → UPDATE the cost (this is called RELAXATION)
-// Step 5: Repeat until destination is reached
-//
-// TIME COMPLEXITY:  O((V + E) log V)
-//   V = number of cities, E = number of routes
-//   log V comes from the priority queue operations
-//
-// SPACE COMPLEXITY: O(V)
-//   We store cost and previous city for each vertex
-// ================================================================
 
 RouteResult Graph::dijkstraCheapest(string source, string destination) {
     RouteResult result;
@@ -192,91 +163,76 @@ RouteResult Graph::dijkstraCheapest(string source, string destination) {
         return result;
     }
 
-     // --- STEP 1: Setup ---
- 
-    // dist stores the cheapest known cost to reach each city
-    // at the start everything is INT_MAX (infinity)
+
     map<string, int> dist;
     for (const auto& pair : adjList) {
         dist[pair.first] = INT_MAX;
     }
     dist[source] = 0;
 
-     // duration stores total flight time along the cheapest path
+     // duration 
     map<string, int> duration;
     for (const auto& pair : adjList) {
         duration[pair.first] = 0;
     }
 
-     // previous stores WHICH city we came from to reach this city
-    // this is how we reconstruct the path at the end
-    // e.g. previous["London"] = "Dubai" means we came from Dubai
     map<string, string> previous;
 
-     // Priority Queue (Min Heap)
-    // stores pairs of (cost, cityName)
-    // priority_queue by default is MAX heap so we use greater<>
-    // to make it MIN heap — always gives smallest cost first
     priority_queue<
         pair<int,string>,
         vector<pair<int,string>>,
         greater<pair<int,string>>
     > pq;
  
-    pq.push({0, source});  // start from source with cost 0
+    pq.push({0, source});  
 
-     // --- STEP 2: Main Loop ---
     while (!pq.empty()) {
  
-        // take out the city with SMALLEST cost
         pair<int,string> top = pq.top();
         pq.pop();
         int currentCost = top.first;
         string currentCity = top.second;
  
-        // if we already found a cheaper way to this city, skip it
         if (currentCost > dist[currentCity]) continue;
  
-        // if we reached destination, we are done
         if (currentCity == destination) break;
- 
-        // --- STEP 3: Look at all neighbours ---
+
         for (const auto& edge : adjList[currentCity]) {
             string neighbour = edge.destination;
  
+            if (dist[currentCity] == INT_MAX) continue;  
             if (adjList.find(neighbour) == adjList.end()) continue;
 
-                        // --- STEP 4: RELAXATION ---
-            // new cost = cost to reach currentCity + cost of this flight
-            if (dist[currentCity] == INT_MAX) continue;  // ← add this chec
             int newCost = dist[currentCity] + edge.cost;
  
-            // if this new cost is CHEAPER than what we knew before
+
             if (newCost < dist[neighbour]) {
-                dist[neighbour] = newCost;  // update the cost
+                dist[neighbour] = newCost;  
                 duration[neighbour] = duration[currentCity] + edge.duration;
-                previous[neighbour] = currentCity;  // remember we came from here
-                pq.push({newCost, neighbour});  // add to queue for processing
+                previous[neighbour] = currentCity;  
+                pq.push({newCost, neighbour});  
             }
         }
     }
-        // --- STEP 5: Reconstruct the path ---
-    // we follow the 'previous' map backwards from destination to source
+      
     if (dist[destination] == INT_MAX) {
-        // never reached destination
+    
         result.found = false;
         return result;
     }
  
-    // trace back from destination to source
-    string current = destination;
-    while (current != source) {
-        result.path.push_back(current);
-        current = previous[current];
+ 
+string current = destination;
+while (current != source) {
+    result.path.push_back(current);
+    if (previous.find(current) == previous.end()) {
+        result.found = false;
+        return result;
     }
+    current = previous[current];
+}
     result.path.push_back(source);
  
-    // path was built backwards so reverse it
     reverse(result.path.begin(), result.path.end());
  
     result.totalCost = dist[destination];
@@ -286,13 +242,7 @@ RouteResult Graph::dijkstraCheapest(string source, string destination) {
 }
 
 
-// ================================================================
-// DIJKSTRA'S ALGORITHM — Find Fastest Route (by duration)
-//
-// Exact same algorithm as dijkstraCheapest
-// The ONLY difference is we compare duration instead of cost
-// This shows how flexible Dijkstra is — just change the weight!
-// ================================================================
+
 
 RouteResult Graph::dijkstraFastest(string source, string destination) {
     RouteResult result;
@@ -309,14 +259,14 @@ RouteResult Graph::dijkstraFastest(string source, string destination) {
         return result;
     }
  
-    // this time dist stores DURATION (time) not cost
+
     map<string, int> dist;
     for (const auto& pair : adjList) {
         dist[pair.first] = INT_MAX;
     }
     dist[source] = 0;
  
-    // cost stores total price along the fastest path
+
     map<string, int> cost;
     for (const auto& pair : adjList) {
         cost[pair.first] = 0;
@@ -345,7 +295,6 @@ RouteResult Graph::dijkstraFastest(string source, string destination) {
             string neighbour = edge.destination;
             if (adjList.find(neighbour) == adjList.end()) continue;
  
-            // relaxation by DURATION this time
             int newDuration = dist[currentCity] + edge.duration;
             if (newDuration < dist[neighbour]) {
                 dist[neighbour] = newDuration;
@@ -363,9 +312,13 @@ RouteResult Graph::dijkstraFastest(string source, string destination) {
  
     string current = destination;
     while (current != source) {
-        result.path.push_back(current);
-        current = previous[current];
+    result.path.push_back(current);
+    if (previous.find(current) == previous.end()) {
+        result.found = false;
+        return result;
     }
+    current = previous[current];
+}
     result.path.push_back(source);
     reverse(result.path.begin(), result.path.end());
  
@@ -373,4 +326,165 @@ RouteResult Graph::dijkstraFastest(string source, string destination) {
     result.totalDuration = dist[destination];
     result.found = true;
     return result;
+}
+
+RouteResult Graph::bfsFewestStops(string source, string destination) {
+    RouteResult result;
+    result.found = false;
+    result.totalCost = 0;
+    result.totalDuration = 0;
+ 
+    if (adjList.find(source) == adjList.end()) {
+        cout << "Source city does not exist." << endl;
+        return result;
+    }
+    if (adjList.find(destination) == adjList.end()) {
+        cout << "Destination city does not exist." << endl;
+        return result;
+    }
+ 
+    if (source == destination) {
+        result.path.push_back(source);
+        result.found = true;
+        return result;
+    }
+ 
+   
+    map<string, bool> visited;
+
+    map<string, string> previous;
+ 
+    map<string, int> totalCost;
+    map<string, int> totalDuration;
+ 
+    for (const auto& pair : adjList) {
+        visited[pair.first]      = false;
+        totalCost[pair.first]    = 0;
+        totalDuration[pair.first]= 0;
+    }
+ 
+    queue<string> q;
+ 
+    q.push(source);
+    
+    while (!q.empty()) {
+
+        string currentCity = q.front();
+        q.pop();
+        for (const auto& edge : adjList[currentCity]) {
+            string neighbour = edge.destination;
+ 
+            if (!visited[neighbour]) {
+                visited[neighbour]       = true;
+                previous[neighbour]      = currentCity;
+                totalCost[neighbour]     = totalCost[currentCity] + edge.cost;
+                totalDuration[neighbour] = totalDuration[currentCity] + edge.duration;
+ 
+                if (neighbour == destination) {
+                    // reconstruct path
+                    string current = destination;
+                    while (current != source) {
+                        result.path.push_back(current);
+                        current = previous[current];
+                    }
+                    result.path.push_back(source);
+                    reverse(result.path.begin(), result.path.end());
+                    result.totalCost     = totalCost[destination];
+                    result.totalDuration = totalDuration[destination];
+                    result.found         = true;
+                    return result;
+                }
+ 
+                q.push(neighbour); 
+            }
+        }
+    }
+ 
+  
+    result.found = false;
+    return result;
+}
+
+
+void Graph::dfsAllPaths(
+    string current,
+    string destination,
+    map<string, bool>& visited,
+    vector<string>& path,
+    int currentCost,
+    int currentDuration,
+    int& pathCount
+) {
+     if (path.size() > 3) return;
+    // mark current city as visited 
+    visited[current] = true;
+    path.push_back(current);
+ 
+    // BASE CASE: if we reached destination, print this path
+    if (current == destination) {
+        pathCount++;
+        cout << "\nPath " << pathCount << ": ";
+        for (int i = 0; i < path.size(); i++) {
+            cout << path[i];
+            if (i < path.size() - 1) cout << " -> ";
+        }
+        int hours = currentDuration / 60;
+        int mins  = currentDuration % 60;
+        cout << "\n         Cost: $" << currentCost
+             << " | Duration: " << hours << "h " << mins << "m"
+             << " | Stops: " << path.size() - 2 << endl;
+    }
+    else {
+        // RECURSIVE CASE: explore all unvisited neighbours
+        for (const auto& edge : adjList[current]) {
+            if (!visited[edge.destination]) {
+                // go deeper into this path
+                dfsAllPaths(
+                    edge.destination,
+                    destination,
+                    visited,
+                    path,
+                    currentCost + edge.cost,
+                    currentDuration + edge.duration,
+                    pathCount
+                );
+                // when it returns we BACKTRACK automatically
+                // because the next iteration tries a different neighbour
+            }
+        }
+    }
+ 
+    
+    visited[current] = false;
+    path.pop_back();
+}
+ 
+
+void Graph::findAllPaths(string source, string destination) {
+    if (adjList.find(source) == adjList.end()) {
+        cout << "Source city does not exist." << endl;
+        return;
+    }
+    if (adjList.find(destination) == adjList.end()) {
+        cout << "Destination city does not exist." << endl;
+        return;
+    }
+ 
+    map<string, bool> visited;
+    for (const auto& pair : adjList) {
+        visited[pair.first] = false;
+    }
+ 
+    vector<string> path;
+    int pathCount = 0;
+ 
+    cout << "\n===== All Paths from " << source << " to " << destination << " =====" << endl;
+ 
+    dfsAllPaths(source, destination, visited, path, 0, 0, pathCount);
+ 
+    if (pathCount == 0) {
+        cout << "No paths found." << endl;
+    } else {
+        cout << "\nTotal paths found: " << pathCount << endl;
+    }
 }

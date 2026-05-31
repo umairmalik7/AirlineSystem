@@ -32,7 +32,19 @@ struct RouteResult {
 
 class Graph {
 private:
-    map<string, vector<Edge>> adjList; // Adjacency list to store the graph
+    map<string, vector<Edge>> adjList; // Adjacency list to store the graph'
+
+     // private helper for DFS — called recursively
+    // private because outside code should use findAllPaths() instead
+    void dfsAllPaths(
+        string current,
+        string destination,
+        map<string, bool>& visited,
+        vector<string>& path,
+        int currentCost,
+        int currentDuration,
+        int& pathCount
+    );
 public:
     string addCity(string city);
     string addRoute(string from , string to , int cost, int duration, string airline );
@@ -42,6 +54,11 @@ public:
     void loadFromFile(string filename);
     RouteResult dijkstraCheapest(string source, string destination);
     RouteResult dijkstraFastest(string source, string destination);
+    // Module 3 — BFS
+    RouteResult bfsFewestStops(string source, string destination);
+ 
+    // Module 4 — DFS
+    void findAllPaths(string source, string destination);
 };
 
 #endif

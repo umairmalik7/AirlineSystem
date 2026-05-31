@@ -14,6 +14,7 @@ ROUTE Karachi Islamabad 600 75 AirBlue
 ROUTE Lahore Islamabad 300 60 PIA
 ROUTE Lahore Dubai 900 180 Emirates
 ROUTE Lahore Istanbul 1100 240 TurkishAirlines
+ROUTE Lahore London 1400 420 BritishAirways
 ROUTE Islamabad London 1500 420 PIA
 ROUTE Islamabad Dubai 700 150 AirBlue
 ROUTE Dubai London 1200 420 Emirates
