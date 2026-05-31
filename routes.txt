@@ -1,33 +1,247 @@
+outes · TXT
 CITY Karachi
 CITY Lahore
 CITY Islamabad
+CITY Peshawar
+CITY Quetta
 CITY Dubai
+CITY AbuDhabi
+CITY Doha
+CITY Riyadh
+CITY Jeddah
+CITY Kuwait
+CITY Muscat
 CITY London
-CITY NewYork
-CITY Toronto
+CITY Manchester
 CITY Paris
+CITY Amsterdam
+CITY Frankfurt
+CITY Madrid
+CITY Rome
 CITY Istanbul
+CITY Cairo
+CITY Nairobi
+CITY Lagos
+CITY Casablanca
+CITY NewYork
+CITY Chicago
+CITY LosAngeles
+CITY Toronto
+CITY Miami
+CITY Houston
+CITY Beijing
+CITY Shanghai
+CITY Tokyo
+CITY Seoul
 CITY Bangkok
-ROUTE Karachi Lahore 500 90 PIA
-ROUTE Karachi Dubai 800 120 Emirates
-ROUTE Karachi Islamabad 600 75 AirBlue
-ROUTE Lahore Islamabad 300 60 PIA
-ROUTE Lahore Dubai 900 180 Emirates
-ROUTE Lahore Istanbul 1100 240 TurkishAirlines
-ROUTE Lahore London 1400 420 BritishAirways
-ROUTE Islamabad London 1500 420 PIA
-ROUTE Islamabad Dubai 700 150 AirBlue
-ROUTE Dubai London 1200 420 Emirates
-ROUTE Dubai NewYork 1800 840 Emirates
-ROUTE Dubai Bangkok 950 360 FlyDubai
-ROUTE Dubai Paris 1100 390 Emirates
-ROUTE London NewYork 900 480 BritishAirways
-ROUTE London Paris 300 75 BritishAirways
-ROUTE London Toronto 850 420 AirCanada
-ROUTE NewYork Toronto 400 90 AirCanada
-ROUTE NewYork Paris 750 450 DeltaAirlines
-ROUTE Toronto Paris 700 420 AirCanada
-ROUTE Paris Istanbul 600 210 AirFrance
-ROUTE Istanbul Bangkok 900 330 TurkishAirlines
-ROUTE Istanbul Dubai 500 180 TurkishAirlines
-ROUTE Bangkok Dubai 850 360 ThaiAirways
+CITY KualaLumpur
+CITY Singapore
+CITY Jakarta
+CITY Sydney
+CITY Melbourne
+ROUTE Karachi Lahore 85 75 PIA
+ROUTE Karachi Islamabad 95 80 PIA
+ROUTE Karachi Peshawar 110 100 AirBlue
+ROUTE Karachi Quetta 75 70 PIA
+ROUTE Karachi Dubai 320 120 Emirates
+ROUTE Karachi AbuDhabi 340 130 Etihad
+ROUTE Karachi Doha 370 150 QatarAirways
+ROUTE Karachi Riyadh 390 165 SaudiArabian
+ROUTE Karachi Muscat 280 110 OmanAir
+ROUTE Karachi London 780 420 PIA
+ROUTE Karachi Beijing 590 480 AirChina
+ROUTE Lahore Islamabad 60 50 PIA
+ROUTE Lahore Peshawar 70 55 AirBlue
+ROUTE Lahore Dubai 350 135 Emirates
+ROUTE Lahore Doha 380 155 QatarAirways
+ROUTE Lahore London 750 440 PIA
+ROUTE Lahore Istanbul 520 270 TurkishAirlines
+ROUTE Lahore Riyadh 410 170 SaudiArabian
+ROUTE Islamabad Lahore 60 50 PIA
+ROUTE Islamabad Dubai 330 125 Emirates
+ROUTE Islamabad London 760 430 PIA
+ROUTE Islamabad Istanbul 510 260 TurkishAirlines
+ROUTE Islamabad Doha 360 148 QatarAirways
+ROUTE Islamabad Beijing 580 470 AirChina
+ROUTE Peshawar Islamabad 65 52 PIA
+ROUTE Peshawar Karachi 110 100 AirBlue
+ROUTE Peshawar Dubai 340 128 Emirates
+ROUTE Quetta Karachi 75 70 PIA
+ROUTE Quetta Dubai 310 115 FlyDubai
+ROUTE Dubai Karachi 320 120 Emirates
+ROUTE Dubai Lahore 350 135 Emirates
+ROUTE Dubai London 1050 420 Emirates
+ROUTE Dubai NewYork 1450 840 Emirates
+ROUTE Dubai Paris 980 390 Emirates
+ROUTE Dubai Frankfurt 1020 390 Lufthansa
+ROUTE Dubai Amsterdam 1010 395 KLM
+ROUTE Dubai Istanbul 480 195 TurkishAirlines
+ROUTE Dubai Cairo 390 185 EgyptAir
+ROUTE Dubai Nairobi 580 255 Emirates
+ROUTE Dubai Bangkok 520 360 Emirates
+ROUTE Dubai Singapore 620 420 Singapore Airlines
+ROUTE Dubai KualaLumpur 590 400 AirAsia
+ROUTE Dubai Beijing 890 480 AirChina
+ROUTE Dubai Sydney 1380 840 Qantas
+ROUTE Dubai Tokyo 1150 600 JAL
+ROUTE Dubai Seoul 1080 540 KoreanAir
+ROUTE AbuDhabi Karachi 340 130 Etihad
+ROUTE AbuDhabi London 1020 415 Etihad
+ROUTE AbuDhabi NewYork 1480 855 Etihad
+ROUTE AbuDhabi Paris 990 385 Etihad
+ROUTE AbuDhabi Sydney 1350 835 Etihad
+ROUTE Doha Karachi 370 150 QatarAirways
+ROUTE Doha London 1000 410 QatarAirways
+ROUTE Doha NewYork 1420 830 QatarAirways
+ROUTE Doha Paris 960 380 QatarAirways
+ROUTE Doha Bangkok 510 355 QatarAirways
+ROUTE Doha Sydney 1320 825 QatarAirways
+ROUTE Doha Tokyo 1120 595 QatarAirways
+ROUTE Riyadh Karachi 390 165 SaudiArabian
+ROUTE Riyadh London 980 400 SaudiArabian
+ROUTE Riyadh Cairo 310 175 SaudiArabian
+ROUTE Riyadh NewYork 1350 810 SaudiArabian
+ROUTE Jeddah Riyadh 95 75 SaudiArabian
+ROUTE Jeddah Cairo 290 170 EgyptAir
+ROUTE Jeddah London 960 395 SaudiArabian
+ROUTE Kuwait Dubai 180 80 KuwaitAirways
+ROUTE Kuwait London 920 390 KuwaitAirways
+ROUTE Muscat Dubai 130 60 OmanAir
+ROUTE Muscat Karachi 280 110 OmanAir
+ROUTE Muscat London 970 405 OmanAir
+ROUTE London Karachi 780 420 PIA
+ROUTE London Dubai 1050 415 BritishAirways
+ROUTE London NewYork 620 420 BritishAirways
+ROUTE London Toronto 680 430 AirCanada
+ROUTE London Paris 140 75 BritishAirways
+ROUTE London Amsterdam 120 65 KLM
+ROUTE London Frankfurt 160 90 Lufthansa
+ROUTE London Madrid 200 130 Iberia
+ROUTE London Rome 220 140 Alitalia
+ROUTE London Istanbul 380 195 TurkishAirlines
+ROUTE London Cairo 620 265 EgyptAir
+ROUTE London Tokyo 1180 660 JAL
+ROUTE London Sydney 1580 1260 Qantas
+ROUTE London LosAngeles 780 630 BritishAirways
+ROUTE London Chicago 680 480 BritishAirways
+ROUTE Manchester London 80 60 BritishAirways
+ROUTE Manchester Dubai 980 400 Emirates
+ROUTE Paris London 140 75 AirFrance
+ROUTE Paris NewYork 680 450 AirFrance
+ROUTE Paris Dubai 980 390 AirFrance
+ROUTE Paris Amsterdam 110 60 AirFrance
+ROUTE Paris Frankfurt 140 75 Lufthansa
+ROUTE Paris Madrid 180 120 Iberia
+ROUTE Paris Rome 190 125 Alitalia
+ROUTE Paris Istanbul 360 185 TurkishAirlines
+ROUTE Paris Tokyo 1150 660 AirFrance
+ROUTE Amsterdam London 120 65 KLM
+ROUTE Amsterdam NewYork 650 480 KLM
+ROUTE Amsterdam Dubai 1010 395 KLM
+ROUTE Amsterdam Frankfurt 120 55 Lufthansa
+ROUTE Frankfurt London 160 90 Lufthansa
+ROUTE Frankfurt NewYork 640 480 Lufthansa
+ROUTE Frankfurt Dubai 1020 390 Lufthansa
+ROUTE Frankfurt Tokyo 1100 640 Lufthansa
+ROUTE Madrid London 200 130 Iberia
+ROUTE Madrid NewYork 620 480 Iberia
+ROUTE Rome London 220 140 Alitalia
+ROUTE Rome NewYork 660 500 Alitalia
+ROUTE Istanbul London 380 195 TurkishAirlines
+ROUTE Istanbul NewYork 780 600 TurkishAirlines
+ROUTE Istanbul Dubai 480 195 TurkishAirlines
+ROUTE Istanbul Karachi 520 270 TurkishAirlines
+ROUTE Istanbul Cairo 260 155 TurkishAirlines
+ROUTE Istanbul Bangkok 780 390 TurkishAirlines
+ROUTE Istanbul Tokyo 1080 570 TurkishAirlines
+ROUTE Cairo London 620 265 EgyptAir
+ROUTE Cairo Dubai 390 185 EgyptAir
+ROUTE Cairo Nairobi 480 240 EgyptAir
+ROUTE Cairo NewYork 980 660 EgyptAir
+ROUTE Nairobi London 680 510 KenyaAirways
+ROUTE Nairobi Dubai 580 255 Emirates
+ROUTE Nairobi Johannesburg 320 195 KenyaAirways
+ROUTE Lagos London 720 390 BritishAirways
+ROUTE Lagos Dubai 680 360 Emirates
+ROUTE Lagos Nairobi 490 270 KenyaAirways
+ROUTE Casablanca London 420 195 RoyalAirMaroc
+ROUTE Casablanca Paris 280 150 RoyalAirMaroc
+ROUTE Casablanca NewYork 780 480 RoyalAirMaroc
+ROUTE NewYork London 620 420 AmericanAirlines
+ROUTE NewYork Paris 680 450 DeltaAirlines
+ROUTE NewYork Toronto 180 80 AirCanada
+ROUTE NewYork Miami 160 170 AmericanAirlines
+ROUTE NewYork Chicago 140 140 UnitedAirlines
+ROUTE NewYork LosAngeles 280 330 DeltaAirlines
+ROUTE NewYork Dubai 1450 840 Emirates
+ROUTE NewYork Tokyo 980 780 DeltaAirlines
+ROUTE NewYork Beijing 1020 780 AirChina
+ROUTE Chicago NewYork 140 140 UnitedAirlines
+ROUTE Chicago London 680 480 UnitedAirlines
+ROUTE Chicago LosAngeles 240 240 UnitedAirlines
+ROUTE Chicago Toronto 160 90 AirCanada
+ROUTE LosAngeles NewYork 280 330 DeltaAirlines
+ROUTE LosAngeles Tokyo 780 600 JAL
+ROUTE LosAngeles Sydney 980 780 Qantas
+ROUTE LosAngeles Beijing 880 660 AirChina
+ROUTE LosAngeles London 780 630 BritishAirways
+ROUTE Toronto NewYork 180 80 AirCanada
+ROUTE Toronto London 680 430 AirCanada
+ROUTE Toronto Chicago 160 90 AirCanada
+ROUTE Miami NewYork 160 170 AmericanAirlines
+ROUTE Miami London 780 510 BritishAirways
+ROUTE Houston NewYork 220 195 UnitedAirlines
+ROUTE Houston London 820 540 BritishAirways
+ROUTE Houston Dubai 1380 810 Emirates
+ROUTE Beijing Shanghai 120 120 AirChina
+ROUTE Beijing Tokyo 380 210 AirChina
+ROUTE Beijing Seoul 280 135 KoreanAir
+ROUTE Beijing London 980 600 AirChina
+ROUTE Beijing NewYork 1020 780 AirChina
+ROUTE Beijing Dubai 890 480 AirChina
+ROUTE Beijing Sydney 980 600 AirChina
+ROUTE Shanghai Beijing 120 120 AirChina
+ROUTE Shanghai Tokyo 280 165 AirChina
+ROUTE Shanghai Seoul 240 120 KoreanAir
+ROUTE Shanghai Singapore 480 270 SingaporeAirlines
+ROUTE Shanghai Sydney 1080 570 AirChina
+ROUTE Tokyo Seoul 280 120 JAL
+ROUTE Tokyo Beijing 380 210 JAL
+ROUTE Tokyo LosAngeles 780 600 JAL
+ROUTE Tokyo London 1180 660 JAL
+ROUTE Tokyo Singapore 680 360 JAL
+ROUTE Tokyo Sydney 780 420 JAL
+ROUTE Seoul Tokyo 280 120 KoreanAir
+ROUTE Seoul Beijing 280 135 KoreanAir
+ROUTE Seoul Singapore 620 330 KoreanAir
+ROUTE Seoul Sydney 980 510 KoreanAir
+ROUTE Bangkok Dubai 520 360 ThaiAirways
+ROUTE Bangkok Singapore 240 150 ThaiAirways
+ROUTE Bangkok KualaLumpur 180 120 AirAsia
+ROUTE Bangkok Tokyo 680 345 ThaiAirways
+ROUTE Bangkok London 980 690 ThaiAirways
+ROUTE Bangkok Sydney 780 510 ThaiAirways
+ROUTE KualaLumpur Singapore 120 50 AirAsia
+ROUTE KualaLumpur Dubai 590 400 AirAsia
+ROUTE KualaLumpur London 920 660 MalaysiaAirlines
+ROUTE KualaLumpur Sydney 680 420 MalaysiaAirlines
+ROUTE KualaLumpur Tokyo 560 330 AirAsia
+ROUTE Singapore Dubai 620 420 SingaporeAirlines
+ROUTE Singapore London 960 690 SingaporeAirlines
+ROUTE Singapore Sydney 580 390 SingaporeAirlines
+ROUTE Singapore Tokyo 680 360 SingaporeAirlines
+ROUTE Singapore NewYork 1280 960 SingaporeAirlines
+ROUTE Jakarta Singapore 180 90 GarudaIndonesia
+ROUTE Jakarta KualaLumpur 160 80 AirAsia
+ROUTE Jakarta Sydney 480 330 GarudaIndonesia
+ROUTE Jakarta Dubai 680 420 Emirates
+ROUTE Sydney Melbourne 120 75 Qantas
+ROUTE Sydney Singapore 580 390 Qantas
+ROUTE Sydney Dubai 1380 840 Qantas
+ROUTE Sydney London 1580 1260 Qantas
+ROUTE Sydney Tokyo 780 420 Qantas
+ROUTE Sydney LosAngeles 980 780 Qantas
+ROUTE Melbourne Sydney 120 75 Qantas
+ROUTE Melbourne Singapore 620 405 Qantas
+ROUTE Melbourne Dubai 1350 835 Qantas
+ 
